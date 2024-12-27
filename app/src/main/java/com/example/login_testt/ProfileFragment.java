@@ -128,6 +128,8 @@ public class ProfileFragment extends Fragment {
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 // need to see if null, print out N/A if child is null and book is Check Out, Yes(True) or No(False)
 
+                binding1.etusername.setText("");
+                binding1.tvBookTitle.setText("");
                 binding1.tvBookAuthor.setText("");
                 binding1.tvStudentName.setText("");
                 binding1.tvCheckInOut.setText("");
@@ -139,11 +141,13 @@ public class ProfileFragment extends Fragment {
                             Toast.makeText(getContext(), "Successfully Read", Toast.LENGTH_SHORT).show();
 
                             DataSnapshot dataSnapshot = task.getResult();
+                            String book_Name = String.valueOf(dataSnapshot.child("book_Name").getValue());
                             String AuthorName = String.valueOf(dataSnapshot.child("author_Name").getValue());
                             String ChildName = String.valueOf(dataSnapshot.child("child_Name").getValue());
                             boolean Check_In_Out = Boolean.valueOf(String.valueOf(dataSnapshot.child("check_In_Out").getValue()));
 
                             // delete above code after
+                            binding1.tvBookTitle.setText(book_Name);
                             binding1.tvBookAuthor.setText(AuthorName);
                             if(ChildName.isEmpty()){
                                 binding1.tvStudentName.setText("N/A");
