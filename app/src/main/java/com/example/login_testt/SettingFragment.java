@@ -95,9 +95,17 @@ public class SettingFragment extends Fragment {
         binding1.buttonIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 String book_Name = binding1.tvBookName1.getText().toString();
 
-                updateData_In(book_Name);
+                if(!book_Name.isEmpty()) {
+
+                    updateData_In(book_Name);
+                }
+                else{
+                    Toast.makeText(getContext(), "Please enter a book name" , Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -106,7 +114,21 @@ public class SettingFragment extends Fragment {
             public void onClick(View v) {
                 String book_Name = binding1.tvBookName2.getText().toString();
                 String child_Name = binding1.tvStudentName.getText().toString();
-                updateData_Out(book_Name, child_Name);
+
+                if((!book_Name.isEmpty()) && (!child_Name.isEmpty())) {
+                    updateData_Out(book_Name, child_Name);
+                }
+                else{
+                    if((book_Name.isEmpty()) && (child_Name.isEmpty())){
+                        Toast.makeText(getContext(), "Please enter a Book name and Student Name" , Toast.LENGTH_SHORT).show();
+                    }
+                    else if(book_Name.isEmpty()){
+                        Toast.makeText(getContext(), "Please enter a Book name" , Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(getContext(), "Please enter a Student name", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
 
