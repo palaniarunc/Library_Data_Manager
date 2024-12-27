@@ -171,7 +171,7 @@ public class ProfileFragment extends Fragment {
 
                         }
                         else{
-                            Toast.makeText(getContext(), "Book_Name does not exist", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Book Name does not exist", Toast.LENGTH_SHORT).show();
                         }
 
                 }

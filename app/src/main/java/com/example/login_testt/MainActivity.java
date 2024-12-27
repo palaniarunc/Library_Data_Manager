@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 replaceFragment(new ProfileFragment());
             }
             else if(item.getItemId() == R.id.settings){
-                Toast.makeText(MainActivity.this, "Successfuly switched to Check In/OUT", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Successfuly switched to Check In/Out", Toast.LENGTH_SHORT).show();
                 replaceFragment(new SettingFragment());
             }
 
