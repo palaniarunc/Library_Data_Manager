@@ -3,15 +3,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F44336"
     tools:context=".SettingFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <EditText
+        android:id="@+id/tv_book_name_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="Book Name"
+        android:textSize="18dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="150dp"
+        android:text="" />
+
+    <Button
+        android:id="@+id/button_In"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="215dp"
+        android:text=" Check In " />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Check In/Out"
         android:textSize="26dp"
-        android:text="Setting Fragment"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="60dp"/>
+
+    <EditText
+        android:id="@+id/tv_book_name_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Book Name"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="400dp"
+        android:textSize="18dp"
+        android:inputType="text"
+        android:text="" />
+
+    <Button
+        android:id="@+id/button_Out"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="465dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Check Out" />
 
 </FrameLayout>
