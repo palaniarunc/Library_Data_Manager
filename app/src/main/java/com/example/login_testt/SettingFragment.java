@@ -101,16 +101,77 @@ public class SettingFragment extends Fragment {
             }
         });
 
-
+        binding1.buttonOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String book_Name = binding1.tvBookName2.getText().toString();
+                String child_Name = binding1.tvStudentName.getText().toString();
+                updateData_Out(book_Name, child_Name);
+            }
+        });
 
 
         return binding1.getRoot();
     }
 
+    private void updateData_Out(String bookName, String childName) {
+
+
+
+        reference1 = FirebaseDatabase.getInstance().getReference("Book Name");
+
+        reference1.child(bookName).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    HashMap User = new HashMap();
+                    User.put("check_In_Out", true);
+                    User.put("child_Name", childName);
+
+                    reference1.child(bookName).updateChildren(User).addOnCompleteListener(new OnCompleteListener() {
+                        @Override
+                        public void onComplete(@NonNull Task task) {
+
+                            if(task.isSuccessful()){
+
+                                binding1.tvBookName2.setText("");
+                                binding1.tvStudentName.setText("");
+                                // for check out - need to change tvBookName1 to tvBookName2
+                                Toast.makeText(getContext(), "Book successfully Checked Out", Toast.LENGTH_SHORT).show();
+                                // need to change above for the Checked Out
+
+
+                            }
+                            else{
+                                Toast.makeText(getContext(), "Failed to Update",Toast.LENGTH_SHORT ).show();
+                            }
+
+                        } // end of onComplete Method
+                    }); // end of reference 1 - addOncomplete Lister- Update CHilderen
+
+
+
+                }// end of if statement
+                else{
+                    Toast.makeText(getContext(),"Book does not exist", Toast.LENGTH_SHORT).show();
+                }
+            } // end of onData Change
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), "Database Error",Toast.LENGTH_SHORT).show();
+            }
+        }); // end of addListerFor single Value event
+
+
+
+
+
+    }
+
+
     private void updateData_In(String bookName) {
-        HashMap User = new HashMap();
-        User.put("check_In_Out", false);
-        User.put("child_Name", "");
+
 
         reference1 = FirebaseDatabase.getInstance().getReference("Book Name");
 
@@ -160,4 +221,13 @@ public class SettingFragment extends Fragment {
 
 
     } // end of UpdateData_In Method
+
+
+
+
+
+
+
+
+
 }

@@ -8,7 +8,7 @@
     <!-- TODO: Update blank fragment layout -->
 
     <EditText
-        android:id="@+id/tv_book_name_1"
+        android:id="@+id/tvBookName1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -37,7 +37,7 @@
         android:layout_marginTop="60dp"/>
 
     <EditText
-        android:id="@+id/tv_book_name_2"
+        android:id="@+id/tvBookName2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -51,9 +51,21 @@
     <Button
         android:id="@+id/buttonOut"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="465dp"
+        android:layout_marginTop="520dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Check Out" />
+
+    <EditText
+        android:id="@+id/tv_student_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:textSize="18dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="460dp"
+        android:hint="Student Name"
+        android:text="" />
 
 </FrameLayout>
