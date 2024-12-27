@@ -15,7 +15,7 @@ public class Users {
     }
 
     public String getEditFirstname() {
-        return editFirstname;
+        return editFirstname + "hi";
     }
 
     public void setEditFirstname(String editFirstname) {
