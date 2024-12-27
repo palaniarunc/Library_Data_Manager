@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "730511378655",
+    "project_id": "login-testt",
+    "storage_bucket": "login-testt.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:730511378655:android:b805f5f7a9a7886d96c16a",
+        "android_client_info": {
+          "package_name": "com.example.login_testt"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4CpAtF-im_rAuKBA__bzitKQRTl4k0Io"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

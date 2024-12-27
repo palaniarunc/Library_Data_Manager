@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Add Book"
+        android:icon="@drawable/baseline_add_circle_outline_24"
+        android:id="@+id/home"/>
+    <item android:title="Get Data"
+        android:icon="@drawable/database_search_24dp__000000_fill0_wght400_grad0_opsz24"
+        android:id="@+id/profile"/>
+    <item android:title="Check In/Out"
+        android:icon="@drawable/autorenew_24dp__000000_fill0_wght400_grad0_opsz24"
+        android:id="@+id/settings"/>
+</menu>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".HomeFragment"
+    tools:ignore="ExtraText">
+
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="26dp"
+        android:text="Add Book"
+        android:layout_gravity="top|center"
+        android:layout_marginTop="80dp"/>
+
+
+
+    <EditText
+        android:id="@+id/editBookName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="Book Name"
+        android:text=""
+        android:layout_gravity="center"
+        android:layout_marginBottom="160dp"/>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:layout_gravity="center"/>
+
+    <EditText
+        android:id="@+id/editAuthorName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="Author Name"
+        android:layout_gravity="center"
+        android:layout_marginBottom="80dp"/>
+
+
+
+    />
+    /* can do with marginleft, right, and bottom
+
+
+
+</FrameLayout>
+
