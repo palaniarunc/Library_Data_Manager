@@ -19,8 +19,10 @@ import com.example.login_testt.databinding.FragmentSettingBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
@@ -111,26 +113,51 @@ public class SettingFragment extends Fragment {
         User.put("child_Name", "");
 
         reference1 = FirebaseDatabase.getInstance().getReference("Book Name");
-        reference1.child(bookName).updateChildren(User).addOnCompleteListener(new OnCompleteListener() {
+
+        reference1.child(bookName).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onComplete(@NonNull Task task) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    HashMap User = new HashMap();
+                    User.put("check_In_Out", false);
+                    User.put("child_Name", "");
 
-                if(task.isSuccessful()){
+                    reference1.child(bookName).updateChildren(User).addOnCompleteListener(new OnCompleteListener() {
+                        @Override
+                        public void onComplete(@NonNull Task task) {
 
-                    binding1.tvBookName1.setText("");
-                    // for check out - need to change tvBookName1 to tvBookName2
-                    Toast.makeText(getContext(), "Book successfully Checked In", Toast.LENGTH_SHORT).show();
-                    // need to change above for the Checked Out
+                            if(task.isSuccessful()){
+
+                                binding1.tvBookName1.setText("");
+                                // for check out - need to change tvBookName1 to tvBookName2
+                                Toast.makeText(getContext(), "Book successfully Checked In", Toast.LENGTH_SHORT).show();
+                                // need to change above for the Checked Out
 
 
-                }
+                            }
+                            else{
+                                Toast.makeText(getContext(), "Failed to Update",Toast.LENGTH_SHORT ).show();
+                            }
+
+                        } // end of onComplete Method
+                    }); // end of reference 1 - addOncomplete Lister- Update CHilderen
+
+
+
+                }// end of if statement
                 else{
-                    Toast.makeText(getContext(), "Failed to Update",Toast.LENGTH_SHORT ).show();
+                    Toast.makeText(getContext(),"Book does not exist", Toast.LENGTH_SHORT).show();
                 }
+            } // end of onData Change
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), "Database Error",Toast.LENGTH_SHORT).show();
             }
-        });
+        }); // end of addListerFor single Value event
 
 
-    }
+
+
+    } // end of UpdateData_In Method
 }
