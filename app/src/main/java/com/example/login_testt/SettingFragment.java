@@ -7,6 +7,22 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import com.example.login_testt.databinding.ActivityMainBinding;
+import com.example.login_testt.databinding.FragmentHomeBinding;
+import com.example.login_testt.databinding.FragmentProfileBinding;
+import com.example.login_testt.databinding.FragmentSettingBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,6 +33,14 @@ import android.view.ViewGroup;
 
 //SETTING FRAGMENT IS KNOWN AS CHECKIN/OUT IN APP
 public class SettingFragment extends Fragment {
+
+
+
+    FragmentSettingBinding binding1;
+    // need to change every time
+    // you import as well
+    FirebaseDatabase db1;
+    DatabaseReference reference1;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -62,6 +86,51 @@ public class SettingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_setting, container, false);
+
+        binding1 = FragmentSettingBinding.inflate(inflater, container, false);
+
+        //Check In Code
+        binding1.buttonIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String book_Name = binding1.tvBookName1.getText().toString();
+
+                updateData_In(book_Name);
+            }
+        });
+
+
+
+
+        return binding1.getRoot();
+    }
+
+    private void updateData_In(String bookName) {
+        HashMap User = new HashMap();
+        User.put("check_In_Out", false);
+        User.put("child_Name", "");
+
+        reference1 = FirebaseDatabase.getInstance().getReference("Book Name");
+        reference1.child(bookName).updateChildren(User).addOnCompleteListener(new OnCompleteListener() {
+            @Override
+            public void onComplete(@NonNull Task task) {
+
+                if(task.isSuccessful()){
+
+                    binding1.tvBookName1.setText("");
+                    // for check out - need to change tvBookName1 to tvBookName2
+                    Toast.makeText(getContext(), "Book successfully Checked In", Toast.LENGTH_SHORT).show();
+                    // need to change above for the Checked Out
+
+
+                }
+                else{
+                    Toast.makeText(getContext(), "Failed to Update",Toast.LENGTH_SHORT ).show();
+                }
+
+            }
+        });
+
+
     }
 }
