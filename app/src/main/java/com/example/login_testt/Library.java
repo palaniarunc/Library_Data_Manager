@@ -5,17 +5,20 @@ public class Library {
     String Book_Name;
     String Author_Name;
 
+    String ISBN;
     String Child_Name;
 
     boolean Check_In_Out;
 
 
+
     public Library(){
 
     }
-    public Library(String editBook_Name, String editAuthorName) {
+    public Library(String editBook_Name, String editAuthorName,String ISBN) {
         this.Book_Name = editBook_Name;
         this.Author_Name = editAuthorName;
+        this.ISBN = ISBN;
         Child_Name = "";
         Check_In_Out = false;
     }
@@ -53,7 +56,17 @@ public class Library {
     public void setChild_Name(String child_Name) {
         Child_Name = child_Name;
     }
+
+
+    public String getISBN() {
+        return ISBN;
+    }
+
+    public void setISBN(String ISBN) {
+        this.ISBN = ISBN;
+    }
 }
+
 
 
 
