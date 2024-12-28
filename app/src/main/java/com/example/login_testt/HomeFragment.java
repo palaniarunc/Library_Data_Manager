@@ -55,13 +55,13 @@ public class HomeFragment extends Fragment {
                 ISBN = binding1.tvISBN.getText().toString();
 
                 if(!editBookName.isEmpty() && !editAuthorName.isEmpty() && !ISBN.isEmpty()){
-                    Toast.makeText(getContext(),"Entered  If statment Book",Toast.LENGTH_SHORT).show();
+                
                     Library library = new Library(editBookName, editAuthorName,ISBN);
-                    /*
+                    
                     db1 = FirebaseDatabase.getInstance();
                     reference1 = db1.getReference("Book Name");
                     
-                     */
+
                     FirebaseDatabase.getInstance().getReference("Book Name");
                     // Use the above line, that works 
                     reference1.child(editBookName).setValue(library).addOnCompleteListener(new OnCompleteListener<Void>() {
