@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:text="Read Data"
         android:layout_gravity="center"
-        android:layout_marginBottom="90dp"/>
+        android:layout_marginBottom="75dp"/>
 
     <TextView
         android:id="@+id/textView3"
@@ -113,6 +113,37 @@
         android:layout_gravity="center"
         android:layout_marginRight="20dp"
         android:text="" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/RadioGroup2"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginBottom="120dp">
+
+
+
+        <RadioButton
+            android:id="@+id/radioButler"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Mrs.Butler" />
+
+        <RadioButton
+            android:id="@+id/radioPriya"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mrs.Priya"
+            android:layout_gravity="center"/>
+
+    </RadioGroup>
+
+
+
+
+
 
 </FrameLayout>
 

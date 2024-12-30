@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -52,6 +53,8 @@ public class ProfileFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    String tree = "";
+
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -91,6 +94,18 @@ public class ProfileFragment extends Fragment {
 
         binding1 = FragmentProfileBinding.inflate(inflater, container, false);
         // make sure to have this as well
+        binding1.RadioGroup2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId == binding1.radioButler.getId()){
+                    tree = "Mrs_Butler";
+                }
+                if(checkedId == binding1.radioPriya.getId()){
+                    tree = "Mrs_Priya";
+                }
+            }
+        });
+
 
         binding1.button.setOnClickListener(new View.OnClickListener() {
             // the button on binding1. button - the "button" is the ID of the button
@@ -99,12 +114,16 @@ public class ProfileFragment extends Fragment {
                 String book_name = binding1.etusername.getText().toString();
                 if(!book_name.isEmpty()){
 
-                    readData(book_name);
+                    readData(book_name,tree);
 
 
                 }
                 else{
                     Toast.makeText(getContext(),"Please Enter Valid Book_Name",Toast.LENGTH_SHORT).show();
+                }
+                if(binding1.RadioGroup2.getCheckedRadioButtonId() == -1){
+                    Toast.makeText(getContext(), "Please select a teacher", Toast.LENGTH_SHORT).show();
+                    return;
                 }
 
 
@@ -120,9 +139,9 @@ public class ProfileFragment extends Fragment {
         // make sure to have the above
     } // end of oncreate view
 
-    private void readData(String bookName) {
+    private void readData(String bookName, String tree) {
 
-        reference1 = FirebaseDatabase.getInstance().getReference("Book Name");
+        reference1 = FirebaseDatabase.getInstance().getReference(tree);
         // just need to change the book Name reference. Everything else can be the same
         reference1.child(bookName).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
@@ -134,6 +153,7 @@ public class ProfileFragment extends Fragment {
                 binding1.tvBookAuthor.setText("");
                 binding1.tvStudentName.setText("");
                 binding1.tvCheckInOut.setText("");
+                binding1.RadioGroup2.clearCheck();
 
                 if(task.isSuccessful()){
 
