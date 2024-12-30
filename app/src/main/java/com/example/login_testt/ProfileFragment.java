@@ -123,6 +123,7 @@ public class ProfileFragment extends Fragment {
     private void readData(String bookName) {
 
         reference1 = FirebaseDatabase.getInstance().getReference("Book Name");
+        // just need to change the book Name reference. Everything else can be the same
         reference1.child(bookName).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {

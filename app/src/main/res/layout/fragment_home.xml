@@ -35,7 +35,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"/>
 
     <EditText
         android:id="@+id/editAuthorName"
@@ -58,6 +59,31 @@
         android:layout_marginBottom="130dp"
         android:text="" />
 
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/RadioGroup1"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginBottom="40dp">
+
+
+
+    <RadioButton
+        android:id="@+id/radioButler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Mrs.Butler"/>
+
+    <RadioButton
+        android:id="@+id/radioPriya"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mrs.Priya"
+        android:layout_gravity="center"/>
+
+    </RadioGroup>
 
     />
     /* can do with marginleft, right, and bottom

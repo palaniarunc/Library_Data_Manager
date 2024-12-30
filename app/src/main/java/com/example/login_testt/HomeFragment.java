@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -42,11 +43,27 @@ public class HomeFragment extends Fragment {
     FirebaseDatabase db1;
     DatabaseReference reference1;
 
-// make sure to have this
+    String tree = "";
+
+    // make sure to have this
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         binding1 = FragmentHomeBinding.inflate(inflater, container, false);
-   // make sure to have this as well 
+        // make sure to have this as well
+        binding1.RadioGroup1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId == binding1.radioButler.getId() ){
+                    tree = "Mrs_Butler";
+                }
+                else if(checkedId == binding1.radioPriya.getId()){
+                    tree = "Mrs_Priya";
+                }
+            }
+        });
+
+
+
         binding1.button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,16 +71,25 @@ public class HomeFragment extends Fragment {
                 editAuthorName = binding1.editAuthorName.getText().toString();
                 ISBN = binding1.tvISBN.getText().toString();
 
-                if(!editBookName.isEmpty() && !editAuthorName.isEmpty() && !ISBN.isEmpty()){
-                
-                    Library library = new Library(editBookName, editAuthorName,ISBN);
-                    
-                    db1 = FirebaseDatabase.getInstance();
-                    reference1 = db1.getReference("Book Name");
-                    
+                if(editBookName.isEmpty() || editAuthorName.isEmpty() || ISBN.isEmpty()){
+                    Toast.makeText(getContext(),"Please fill out all the fields",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(binding1.RadioGroup1.getCheckedRadioButtonId() == -1){
+                    Toast.makeText(getContext(), "Please select a teacher", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-                    FirebaseDatabase.getInstance().getReference("Book Name");
-                    // Use the above line, that works 
+                if(!editBookName.isEmpty() && !editAuthorName.isEmpty() && !ISBN.isEmpty()){
+
+                    Library library = new Library(editBookName, editAuthorName,ISBN);
+
+                    db1 = FirebaseDatabase.getInstance();
+                    reference1 = db1.getReference(tree);
+
+
+                    FirebaseDatabase.getInstance().getReference(tree);
+                    // Use the above line, that works
                     reference1.child(editBookName).setValue(library).addOnCompleteListener(new OnCompleteListener<Void>() {
                         //create the child node name as the Book Name of the User
                         @Override
@@ -72,6 +98,7 @@ public class HomeFragment extends Fragment {
                             binding1.editBookName.setText("");
                             binding1.editAuthorName.setText("");
                             binding1.tvISBN.setText("");
+                            binding1.RadioGroup1.clearCheck();
                             Toast.makeText(getContext(),"Succesfuuly Added Book",Toast.LENGTH_SHORT).show();
                             // How to call toast in Fragments
                         }
