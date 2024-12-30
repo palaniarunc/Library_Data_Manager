@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 replaceFragment(new HomeFragment());
             }
             else if(item.getItemId() == R.id.profile){
-                Toast.makeText(MainActivity.this, "Successfuly switched to Get Data", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Successfuly switched to Find Books", Toast.LENGTH_SHORT).show();
                 replaceFragment(new ProfileFragment());
             }
             else if(item.getItemId() == R.id.settings){

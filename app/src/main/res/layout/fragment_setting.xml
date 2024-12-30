@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="215dp"
+        android:layout_marginTop="240dp"
         android:text=" Check In " />
 
     <TextView
@@ -51,7 +51,7 @@
     <Button
         android:id="@+id/buttonOut"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="520dp"
+        android:layout_marginTop="560dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Check Out" />
@@ -67,5 +67,57 @@
         android:layout_marginTop="460dp"
         android:hint="Student Name"
         android:text="" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/RadioGroup3"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginBottom="180dp">
+
+
+
+        <RadioButton
+            android:id="@+id/radioButler"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Mrs.Butler"/>
+
+        <RadioButton
+            android:id="@+id/radioPriya"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mrs.Priya"
+            android:layout_gravity="center"/>
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/RadioGroup4"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginTop="140dp">
+
+
+
+        <RadioButton
+            android:id="@+id/radioButler2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Mrs.Butler"/>
+
+        <RadioButton
+            android:id="@+id/radioPriya2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mrs.Priya"
+            android:layout_gravity="center"/>
+
+    </RadioGroup>
 
 </FrameLayout>

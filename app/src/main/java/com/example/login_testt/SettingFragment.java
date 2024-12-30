@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -53,6 +54,9 @@ public class SettingFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    String tree1 = "";
+    String tree2 = "";
+
     public SettingFragment() {
         // Required empty public constructor
     }
@@ -91,6 +95,30 @@ public class SettingFragment extends Fragment {
 
         binding1 = FragmentSettingBinding.inflate(inflater, container, false);
 
+        binding1.RadioGroup3.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId == binding1.radioButler.getId()){
+                    tree1 = "Mrs_Butler";
+                }
+                else if(checkedId == binding1.radioPriya.getId()){
+                    tree1 = "Mrs_Priya";
+                }
+            }
+        });
+        binding1.RadioGroup4.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId == binding1.radioButler2.getId()){
+                    tree2 = "Mrs_Butler";
+                }
+                if(checkedId == binding1.radioPriya2.getId()){
+                    tree2 = "Mrs_Priya";
+                }
+            }
+        });
+
+
         //Check In Code
         binding1.buttonIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,12 +127,17 @@ public class SettingFragment extends Fragment {
 
                 String book_Name = binding1.tvBookName1.getText().toString();
 
+
                 if(!book_Name.isEmpty()) {
 
-                    updateData_In(book_Name);
+                    updateData_In(book_Name,tree1);
                 }
                 else{
                     Toast.makeText(getContext(), "Please enter a book name" , Toast.LENGTH_SHORT).show();
+                }
+                if(binding1.RadioGroup3.getCheckedRadioButtonId() == -1){
+                    Toast.makeText(getContext(), "Please select a teacher", Toast.LENGTH_SHORT).show();
+                    return;
                 }
             }
         });
@@ -115,8 +148,10 @@ public class SettingFragment extends Fragment {
                 String book_Name = binding1.tvBookName2.getText().toString();
                 String child_Name = binding1.tvStudentName.getText().toString();
 
+
+
                 if((!book_Name.isEmpty()) && (!child_Name.isEmpty())) {
-                    updateData_Out(book_Name, child_Name);
+                    updateData_Out(book_Name, child_Name,tree2);
                 }
                 else{
                     if((book_Name.isEmpty()) && (child_Name.isEmpty())){
@@ -129,6 +164,10 @@ public class SettingFragment extends Fragment {
                         Toast.makeText(getContext(), "Please enter a Student name", Toast.LENGTH_SHORT).show();
                     }
                 }
+                if(binding1.RadioGroup4.getCheckedRadioButtonId() == -1){
+                    Toast.makeText(getContext(), "Please select a teacher", Toast.LENGTH_SHORT).show();
+                    return;
+                }
             }
         });
 
@@ -136,11 +175,11 @@ public class SettingFragment extends Fragment {
         return binding1.getRoot();
     }
 
-    private void updateData_Out(String bookName, String childName) {
+    private void updateData_Out(String bookName, String childName,String tree2) {
 
 
 
-        reference1 = FirebaseDatabase.getInstance().getReference("Book Name");
+        reference1 = FirebaseDatabase.getInstance().getReference(tree2);
 
         reference1.child(bookName).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -158,6 +197,7 @@ public class SettingFragment extends Fragment {
 
                                 binding1.tvBookName2.setText("");
                                 binding1.tvStudentName.setText("");
+                                binding1.RadioGroup4.clearCheck();
                                 // for check out - need to change tvBookName1 to tvBookName2
                                 Toast.makeText(getContext(), "Book successfully Checked Out", Toast.LENGTH_SHORT).show();
                                 // need to change above for the Checked Out
@@ -192,10 +232,10 @@ public class SettingFragment extends Fragment {
     }
 
 
-    private void updateData_In(String bookName) {
+    private void updateData_In(String bookName,String tree1) {
 
 
-        reference1 = FirebaseDatabase.getInstance().getReference("Book Name");
+        reference1 = FirebaseDatabase.getInstance().getReference(tree1);
 
         reference1.child(bookName).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -212,6 +252,7 @@ public class SettingFragment extends Fragment {
                             if(task.isSuccessful()){
 
                                 binding1.tvBookName1.setText("");
+                                binding1.RadioGroup3.clearCheck();
                                 // for check out - need to change tvBookName1 to tvBookName2
                                 Toast.makeText(getContext(), "Book successfully Checked In", Toast.LENGTH_SHORT).show();
                                 // need to change above for the Checked Out
