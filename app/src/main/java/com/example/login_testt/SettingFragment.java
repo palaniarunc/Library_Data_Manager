@@ -175,11 +175,11 @@ public class SettingFragment extends Fragment {
         return binding1.getRoot();
     }
 
-    private void updateData_Out(String bookName, String childName,String tree2) {
+    private void updateData_Out(String bookName, String childName,String tree3) {
 
 
 
-        reference1 = FirebaseDatabase.getInstance().getReference(tree2);
+        reference1 = FirebaseDatabase.getInstance().getReference(tree3);
 
         reference1.child(bookName).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -198,6 +198,7 @@ public class SettingFragment extends Fragment {
                                 binding1.tvBookName2.setText("");
                                 binding1.tvStudentName.setText("");
                                 binding1.RadioGroup4.clearCheck();
+                                tree2 = "";
                                 // for check out - need to change tvBookName1 to tvBookName2
                                 Toast.makeText(getContext(), "Book successfully Checked Out", Toast.LENGTH_SHORT).show();
                                 // need to change above for the Checked Out
@@ -232,10 +233,10 @@ public class SettingFragment extends Fragment {
     }
 
 
-    private void updateData_In(String bookName,String tree1) {
+    private void updateData_In(String bookName,String tree4) {
 
 
-        reference1 = FirebaseDatabase.getInstance().getReference(tree1);
+        reference1 = FirebaseDatabase.getInstance().getReference(tree4);
 
         reference1.child(bookName).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -253,6 +254,7 @@ public class SettingFragment extends Fragment {
 
                                 binding1.tvBookName1.setText("");
                                 binding1.RadioGroup3.clearCheck();
+                                tree1 = " ";
                                 // for check out - need to change tvBookName1 to tvBookName2
                                 Toast.makeText(getContext(), "Book successfully Checked In", Toast.LENGTH_SHORT).show();
                                 // need to change above for the Checked Out
