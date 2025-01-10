@@ -119,7 +119,8 @@ public class ProfileFragment extends Fragment {
 
                 }
                 else{
-                    Toast.makeText(getContext(),"Please Enter Valid Book_Name",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),"Please enter a  Book_Name",Toast.LENGTH_SHORT).show();
+                    return;
                 }
                 if(binding1.RadioGroup2.getCheckedRadioButtonId() == -1){
                     Toast.makeText(getContext(), "Please select a teacher", Toast.LENGTH_SHORT).show();
@@ -139,9 +140,9 @@ public class ProfileFragment extends Fragment {
         // make sure to have the above
     } // end of oncreate view
 
-    private void readData(String bookName, String tree) {
+    private void readData(String bookName, String tree1) {
 
-        reference1 = FirebaseDatabase.getInstance().getReference(tree);
+        reference1 = FirebaseDatabase.getInstance().getReference(tree1);
         // just need to change the book Name reference. Everything else can be the same
         reference1.child(bookName).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
@@ -154,6 +155,7 @@ public class ProfileFragment extends Fragment {
                 binding1.tvStudentName.setText("");
                 binding1.tvCheckInOut.setText("");
                 binding1.RadioGroup2.clearCheck();
+                tree = "";
 
                 if(task.isSuccessful()){
 
@@ -196,7 +198,7 @@ public class ProfileFragment extends Fragment {
 
                         }
                         else{
-                            Toast.makeText(getContext(), "Book Name does not exist", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Book  does not exist", Toast.LENGTH_SHORT).show();
                         }
 
                 }
